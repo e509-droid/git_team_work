@@ -25,10 +25,23 @@ fi
 
 # Копирование файлов с указанным расширением в целевую директорию
 
-
-
-
 echo "Введите расширение файлов, которые вы хотите скопировать (например, 
 txt):"
 read file_extension
+
+
+files=$(find . -type f -name "*.$file_extension")
+
+if [ -z "$files" ];
+	 then
+  echo "Файлов с расширением .$file_extension не найдено."
+	else
+
+  echo "Найденные файлы с расширением .$file_extension:"
+  echo "$files"
+
+  echo "Копирование файлов в $target_destination..."
+  cp $files "$target_destination"
+  echo "Копирование завершено."
+fi
 
